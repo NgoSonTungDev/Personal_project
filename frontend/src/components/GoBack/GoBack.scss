@@ -1,0 +1,18 @@
+.conponent_goback {
+  position: absolute;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  background-color: #343434;
+  bottom: 50px;
+  right: 50px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  i {
+    color: white;
+  }
+  &:hover {
+    background-color: #888787;
+  }
+}

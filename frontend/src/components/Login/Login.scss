@@ -1,0 +1,20 @@
+.conponent_goback_Login {
+  position: fixed;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  background-color: #b2bec3;
+  bottom: 50px;
+  left: 50px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  i {
+    font-size: 25px;
+    font-weight: 500;
+    color: white;
+  }
+  &:hover {
+    background-color: #888787;
+  }
+}

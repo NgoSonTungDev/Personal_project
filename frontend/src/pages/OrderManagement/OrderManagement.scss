@@ -1,0 +1,99 @@
+.comtainer_OrderManagement {
+  width: 100%;
+  height: 100vh;
+  .comtainer_OrderManagement_text {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    transform: translateY(70px);
+    text-align: center;
+    h2 {
+      width: 100%;
+      text-align: center;
+      cursor: no-drop;
+      text-transform: uppercase;
+    }
+    .search_quanlytk {
+      margin-left: 15px;
+      input {
+        outline: none;
+        cursor: auto;
+        margin-top: 5px;
+        border: none;
+        border-radius: 5px;
+        border: 1px solid #444;
+        padding: 2px 10px;
+      }
+      .fa-searchengin {
+        padding: 5.5px;
+        font-weight: 500;
+        border: none;
+        border: 1px solid #444;
+        transform: translateY(-1px);
+        margin-left: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        &:hover {
+          background-color: #0984e3;
+          color: #fff;
+        }
+      }
+    }
+  }
+  .comtainer_OrderManagement_table {
+    width: 90%;
+    height: 560px;
+    overflow-y: scroll;
+    margin-left: 5%;
+    margin-top: 75px;
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+      .price_order {
+        color: #d63031;
+        font-weight: 700;
+      }
+      td,
+      th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        text-transform: capitalize;
+        padding: 10px;
+      }
+      td {
+        button {
+          cursor: pointer;
+          padding: 3px 8px;
+          margin-left: 15px;
+          border: none;
+          outline: none;
+          background-color: transparent;
+          font-size: 15px;
+          i {
+            font-size: 20px;
+            transform: translate(-10px, 2px);
+          }
+        }
+      }
+
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+      .btn_in_order:nth-child(1):hover {
+        cursor: pointer;
+        color: #2ecc71;
+      }
+      .btn_in_order1:hover,
+      .btn_in_order2:hover {
+        cursor: pointer;
+        color: #d63031;
+      }
+    }
+  }
+
+  #AccountManagement_table::-webkit-scrollbar {
+    width: 6px;
+    background-color: #f5f5f5;
+  }
+}

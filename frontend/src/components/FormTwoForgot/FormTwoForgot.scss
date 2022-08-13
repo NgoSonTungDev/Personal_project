@@ -1,0 +1,39 @@
+.container_FormTwoForgot {
+  p {
+    text-transform: capitalize;
+    text-align: center;
+    font-weight: 600;
+    font-size: 23px;
+    padding: 10px 0;
+  }
+  .container_FormTwoForgot_form {
+    margin-top: 10px;
+    margin-left: 70px;
+    input {
+      margin-left: 10px;
+      padding: 0px 3px;
+      outline: none;
+    }
+  }
+
+  .container_FormTwoForgot_form1 {
+    margin-top: 15px;
+    margin-left: 60px;
+    input {
+      margin-left: 10px;
+      padding: 0px 3px;
+      outline: none;
+    }
+  }
+
+  .btnloadding{
+      margin-top: 18px;
+      padding: 0px 20px;
+      margin-left: 50%;
+      transform: translateX(-50%);
+      &:hover{
+          background-color: #1976d2;
+          color: #fff;
+      }
+  }
+}
