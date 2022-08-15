@@ -176,6 +176,10 @@ const TicketMovie = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  seatsBooked: {
+    type: Array,
+    required: true,
+  },
   commment: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comments" }],
 });
 

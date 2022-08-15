@@ -5,8 +5,7 @@ const FooterMovie = () => {
   return (
     <div>
       <div className="container_footer">
-        <p>Nhóm IV</p>
-        {/* <p>@@@ Ngô Sơn Tùng DEVELOPER FULLSTACK @@@</p> */}
+        <p>@@@ Ngô Sơn Tùng DEVELOPER FULLSTACK @@@</p>
       </div>
     </div>
   );

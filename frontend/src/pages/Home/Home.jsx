@@ -66,21 +66,15 @@ const Home = () => {
             <h1>Movie Selection</h1>
           </div>
         </div>
-        <div className="container_search_home">
-          <input
-            type="search"
-            id="test"
-            value={Search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder="Tên phim bạn muốn tìm ..."
-            onKeyDown={(e) => onPress_ENTER(e)}
-          />
-        </div>
+        
 
         <div className="container_home_card">
-          {dataMovie.sort().map((item) => (
-            <CardHome dataCard={item} />
-          ))}
+          <CardHome/>
+          {/* {dataMovie.sort().map((item) => (
+            <CardHome 
+            dataCard={item} 
+            />
+          ))} */}
         </div>
       </div>
       <LoginHome />
