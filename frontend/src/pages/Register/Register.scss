@@ -1,64 +1,127 @@
-.container_Register {
-    width: 100%;
-    height: 100vh;
-    background-image: url("https://images.pexels.com/photos/2559941/pexels-photo-2559941.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    position: relative;
-    // display: grid;
-    // place-items: center;
-    .container_Register_form {
+.container_register {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+background: url("https://images.pexels.com/photos/3137890/pexels-photo-3137890.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+
+  .container_register_form {
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    width: 400px;
+    max-width: 100%;
+
+    .header {
+      border-bottom: 1px solid #f0f0f0;
+      background-color: #f7f7f7;
+      padding: 20px 40px;
+    }
+
+    .header h2 {
+      margin: 0;
+    }
+
+    .form {
+      padding: 30px 40px;
+    }
+
+    .form-control {
+      margin-bottom: 10px;
+      padding-bottom: 20px;
+      position: relative;
+    }
+
+    .form-control label {
+      display: inline-block;
+      margin-bottom: 5px;
+    }
+
+    .form-control input {
+      border: 2px solid #f0f0f0;
+      border-radius: 4px;
+      display: block;
+      font-family: inherit;
+      font-size: 14px;
+      padding: 10px;
+      width: 100%;
+    }
+
+    .form-control input:focus {
+      outline: 0;
+      border-color: #777;
+    }
+
+    .form-control.success input {
+      border-color: #2ecc71;
+    }
+
+    .form-control.error input {
+      border-color: #e74c3c;
+    }
+
+    .form-control i {
+      visibility: hidden;
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%,-50%);
-      width: 30%;
-      height: 300px;
-      border-radius: 8px;
-      background-color: white;
-      h3 {
-        text-align: center;
-        padding: 15px 0;
-        font-size: 25px;
+      top: 50px;
+      right: 25px;
+    }
+
+    .form-control.success i.fa-check-circle {
+      color: #2ecc71;
+      visibility: visible;
+    }
+
+    .form-control.error i.fa-exclamation-circle {
+      color: #e74c3c;
+      visibility: visible;
+    }
+
+    .form-control small {
+      color: #e74c3c;
+      position: absolute;
+      bottom: 0;
+      left: 12px;
+      visibility: hidden;
+    }
+
+    .form-control.error small {
+      visibility: visible;
+    }
+
+    .form button {
+      background-color: #8e44ad;
+      border: 2px solid #8e44ad;
+      border-radius: 4px;
+      color: #fff;
+      display: block;
+      font-family: inherit;
+      font-size: 16px;
+      padding: 10px;
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    @media screen and (max-width: 480px) {
+      .social-panel-container.visible {
+        transform: translateX(0px);
       }
-      .container_Register_form_text {
-        table {
-          margin-left: 15%;
-          tr {
-            td {
-              input {
-                padding: 3px 8px;
-                  outline: none;
-                margin-left: 15px;
-              }
-            }
-          }
-        }
-      }
-      .buttonRegister {
-        padding: 0px 30px;
-        transform: translate(-50%, -50%);
-        margin-left: 50%;
-        border: none;
-        outline: none;
-        border: 1px solid;
-        &:hover {
-          cursor: pointer;
-          font-weight: 600;
-          color: #fff;
-          background-color: #3498db;
-        }
-      }
-      .text {
-        margin-top: 5px;
-        font-size: 12px;
-        margin-left: 65px;
-        span {
-          cursor: pointer;
-          color: #0d3aee;
-        }
+
+      .floating-btn {
+        right: 10px;
       }
     }
   }
-  
+  .buttonRegister{
+    margin-bottom: 10px;
+    font-weight: 600;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

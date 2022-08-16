@@ -10,28 +10,14 @@ import video from "./video.mp4";
 
 const Home = () => {
   const [dataMovie, setDataMovie] = useState([]);
-  const [dataMovie2, setDataMovie2] = useState([]);
-  const [Search, setSearch] = useState("");
-
-  function onPress_ENTER(event) {
-    if (Search === "") {
-      setDataMovie(dataMovie2);
-    } else {
-      setDataMovie(
-        dataMovie.filter((item) =>
-          item?.namemovie?.toLowerCase()?.includes(Search.toLowerCase())
-        )
-      );
-    }
-  }
 
   useEffect(() => {
     
     axios
       .get("http://localhost:5000/api/movie/all-movie")
       .then(function (response) {
-        setDataMovie(response.data.sort((a,b) => b.price - a.price));
-        setDataMovie2(response.data);
+        // setDataMovie(response.data.sort((a,b) => b.price - a.price));
+        setDataMovie(response.data);
       })
       .catch(function (error) {
         console.log("lỗi :", error);
@@ -69,12 +55,11 @@ const Home = () => {
         
 
         <div className="container_home_card">
-          <CardHome/>
-          {/* {dataMovie.sort().map((item) => (
+          {dataMovie.map((item) => (
             <CardHome 
             dataCard={item} 
             />
-          ))} */}
+          ))}
         </div>
       </div>
       <LoginHome />

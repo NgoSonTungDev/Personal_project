@@ -24,12 +24,11 @@ function App() {
         <Routes>
           <Route path="/page-login-ticket-movie" element={<Login />} />
           <Route path="/" element={<Home />} />
-          <Route path="/home-page-ticket-movie" element={<Home />} />
           <Route path="/:user/cart" element={<Cart />} />
           <Route path="/:user/history" element={<History />} />
           <Route path="/payment-orders/:id" element={<PaymentOrders />} />
           <Route
-            path="/home-page-ticket-movie/:id"
+            path="/home-page-ticket-movie/:movieID/:time"
             element={<IntroduceMovie />}
           />
           <Route path="/register" element={<Register />} />

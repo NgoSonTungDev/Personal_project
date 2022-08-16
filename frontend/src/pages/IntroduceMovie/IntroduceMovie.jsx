@@ -31,6 +31,7 @@ const IntroduceMovie = () => {
   };
 
   useEffect(() => {
+    console.log(idMovie);
     window.scrollTo(0, 0);
     axios
       .get(`http://localhost:5000/api/movie/${idMovie}`)
