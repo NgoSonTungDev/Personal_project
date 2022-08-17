@@ -49,7 +49,7 @@ const CardHome = ({ dataCard }) => {
 
           <div className="container_card_home_contact_detail">
             <span className="text_itro">Giá tiền : </span>{" "}
-            <span className="text_itro_price">78000</span>/người
+            <span className="text_itro_price">{dataCard.price}</span>/người
           </div>
         </div>
       </div>

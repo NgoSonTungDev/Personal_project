@@ -1,0 +1,33 @@
+.container_booking_seat{
+    width: 100%;
+    .container_booking_seat_text{
+        transform: translateY(80px);
+        text-align: center;
+        width: 90%;
+        margin-left: 5%;
+        height: 55px;
+        background-color: #e2e2e2;
+    }
+    .container_booking_seat_booking{
+        width: 80%;
+        margin-left: 10%;
+        transform: translateY(100px);
+        background-color: #e2e2e2;
+        display: flex;
+        flex-wrap: wrap;
+        .container_booking_seat_booking_box{
+            margin: 10px 20px;
+            width: 80px;
+            height: 80px;
+            // background-color: #3333;
+            display: grid;
+            font-weight: 600;
+            place-items: center;
+            box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+            &:hover{
+                cursor: pointer;
+                box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+            }
+        }
+    }
+}

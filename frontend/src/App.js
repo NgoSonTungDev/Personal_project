@@ -14,6 +14,7 @@ import OrderManagement from "./pages/OrderManagement/OrderManagement";
 import PaymentOrders from "./pages/PaymentOrders/PaymentOrders";
 import PaymentManagements from "./pages/PaymentManagements/PaymentManagements";
 import Statistical from "./pages/Statistical/Statistical";
+import SeatsBook from "./pages/SeatsBook/SeatsBook";
 
 function App() {
   const admin = localStorage.getItem("admin");
@@ -24,12 +25,17 @@ function App() {
         <Routes>
           <Route path="/page-login-ticket-movie" element={<Login />} />
           <Route path="/" element={<Home />} />
+          <Route path="/home-page-ticket-movie" element={<Home />} />
           <Route path="/:user/cart" element={<Cart />} />
           <Route path="/:user/history" element={<History />} />
           <Route path="/payment-orders/:id" element={<PaymentOrders />} />
           <Route
             path="/home-page-ticket-movie/:movieID/:time"
             element={<IntroduceMovie />}
+          />
+          <Route
+            path="/home-page-ticket-movie/SeatsBook/:movieID/:time"
+            element={<SeatsBook />}
           />
           <Route path="/register" element={<Register />} />
           {admin === "true" && (

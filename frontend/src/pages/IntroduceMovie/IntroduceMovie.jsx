@@ -6,43 +6,19 @@ import Navbar from "../../components/Navbar/Navbar";
 import CommentMovie from "../../components/Comment/Comment";
 import FooterMovie from "../../components/Footer/Footer";
 import Toast from "react-bootstrap/Toast";
-import { Button, Modal } from "react-bootstrap";
 
 const IntroduceMovie = () => {
   const [data, setData] = useState([]);
-  const [amount, setAmount] = useState(1);
   const [datacmt, setDatacmt] = useState([]);
   const location = useLocation();
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
   const [show, setShow] = useState(false);
-  const [open, setOpen] = useState(false);
-  const idMovie = location.pathname.split("/home-page-ticket-movie/")[1];
+  const idMovie = location.pathname.split("/")[2];
+  const timeBooked = location.pathname.split("/")[3];
   const IdUser = localStorage.getItem("IdUser");
   const username = localStorage.getItem("username");
   const admin = localStorage.getItem("admin");
-
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
-    setOpen(false);
-  };
-
-  useEffect(() => {
-    console.log(idMovie);
-    window.scrollTo(0, 0);
-    axios
-      .get(`http://localhost:5000/api/movie/${idMovie}`)
-      .then(function (response) {
-        setData(response.data);
-        setDatacmt(response.data.commment);
-      })
-      .catch(function (error) {
-        console.log("lỗi :", error);
-      });
-  }, []);
 
   const handleAddToCart = () => {
     if (admin === "true") {
@@ -51,10 +27,10 @@ const IntroduceMovie = () => {
       if (username) {
         axios
           .post("http://localhost:5000/api/cart/addToCart", {
-            idmovie: idMovie,
+            movieID: idMovie,
             nameMovie: data.namemovie,
             price: data.price,
-            showtime: data.showtime,
+            showtime: timeBooked,
             author: data.author,
             Category: data.Category,
             AccountUSer: IdUser,
@@ -66,7 +42,7 @@ const IntroduceMovie = () => {
           .catch(function (error) {
             console.log("LOI : ", error);
             setShow(true);
-            setMessage("Đã có , không thêm vào nữa nhe 😢");
+            setMessage("Lỗi gì đó mất rồi 😢");
           });
       } else {
         alert("Bạn cần đăng nhập !");
@@ -75,38 +51,51 @@ const IntroduceMovie = () => {
     }
   };
 
-  const handlePushHistory = () => {
-    var min = 1000;
-    var max = 9000;
-    var rand = parseInt(min + Math.random() * (max - min));
-    const sum = amount * data.price;
+  // const handlePushHistory = () => {
+  //   var min = 1000;
+  //   var max = 9000;
+  //   var rand = parseInt(min + Math.random() * (max - min));
+  //   const sum = amount * data.price;
+  //   axios
+  //     .post("http://localhost:5000/api/Historybought/addToHistory", {
+  //       codeOrders: rand,
+  //       idmovie: idMovie,
+  //       nameMovie: data.namemovie,
+  //       price: data.price,
+  //       showtime: data.showtime,
+  //       author: data.author,
+  //       amount: amount,
+  //       Category: data.Category,
+  //       total: sum,
+  //       nameUser: username,
+  //       status: "Chờ xác nhận",
+  //       AccountUSer: IdUser,
+  //     })
+  //     .then(function (response) {
+  //       setShow(true);
+  //       setMessage("Đã đặt thành công 😍");
+  //       setOpen(false);
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //       setShow(true);
+  //       setMessage("Lỗi mất rồi, đặt lại nha 😉");
+  //       setOpen(false);
+  //     });
+  // };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
     axios
-      .post("http://localhost:5000/api/Historybought/addToHistory", {
-        codeOrders: rand,
-        idmovie: idMovie,
-        nameMovie: data.namemovie,
-        price: data.price,
-        showtime: data.showtime,
-        author: data.author,
-        amount: amount,
-        Category: data.Category,
-        total: sum,
-        nameUser: username,
-        status: "Chờ xác nhận",
-        AccountUSer: IdUser,
-      })
+      .get(`http://localhost:5000/api/movie/${idMovie}`)
       .then(function (response) {
-        setShow(true);
-        setMessage("Đã đặt thành công 😍");
-        setOpen(false);
+        setData(response.data);
+        setDatacmt(response.data.commment);
       })
       .catch(function (error) {
-        console.log(error);
-        setShow(true);
-        setMessage("Lỗi mất rồi, đặt lại nha 😉");
-        setOpen(false);
+        console.log("lỗi :", error);
       });
-  };
+  }, []);
 
   return (
     <div>
@@ -148,8 +137,8 @@ const IntroduceMovie = () => {
                   <td className="tableTilleintro">{data.Category}</td>
                 </tr>{" "}
                 <tr>
-                  <td className="tableTitle">thời gian chiếu : </td>
-                  <td className="tableTilleintro">{data.showtime}</td>
+                  <td className="tableTitle">thời gian hiệu lực : </td>
+                  <td className="tableTilleintro">{timeBooked}</td>
                 </tr>
                 <tr>
                   <td className="tableTitle">Giá vé : </td>
@@ -174,7 +163,7 @@ const IntroduceMovie = () => {
                           alert("admin không có có quyền mua");
                         } else {
                           if (username) {
-                            setOpen(true);
+                            navigate(`/home-page-ticket-movie/SeatsBook/${idMovie}/${timeBooked}`);
                           } else {
                             navigate("/page-login-ticket-movie");
                             alert("Bạn cần đăng nhập !");
@@ -223,31 +212,6 @@ const IntroduceMovie = () => {
         </Toast.Header>
         <Toast.Body>{message}</Toast.Body>
       </Toast>
-      <Modal show={open} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Bạn muốn đặt bao nhiêu vé !</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <input
-            className="classAmount"
-            value={amount}
-            onChange={(e) => {
-              setAmount(e.target.value);
-            }}
-            type="number"
-            min={1}
-            placeholder="Số lượng vé"
-          />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Đóng
-          </Button>
-          <Button variant="danger" onClick={handlePushHistory}>
-            Đặt
-          </Button>
-        </Modal.Footer>
-      </Modal>
     </div>
   );
 };
