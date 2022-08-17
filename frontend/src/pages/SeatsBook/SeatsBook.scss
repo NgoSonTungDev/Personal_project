@@ -1,33 +1,87 @@
-.container_booking_seat{
-    width: 100%;
-    .container_booking_seat_text{
-        transform: translateY(80px);
-        text-align: center;
-        width: 90%;
-        margin-left: 5%;
-        height: 55px;
-        background-color: #e2e2e2;
+.container_booking_seat {
+  width: 100%;
+  padding-bottom: 170px;
+  .container_booking_seat_text {
+    transform: translateY(80px);
+    text-align: center;
+    width: 90%;
+    margin-left: 5%;
+    height: 55px;
+    background-color: #e2e2e2;
+  }
+  .container_booking_seat_booking {
+    width: 80%;
+    margin-left: 10%;
+    transform: translateY(100px);
+    background-color: #e2e2e2;
+    display: flex;
+    flex-wrap: wrap;
+    .cancel {
+      background-color: #fff;
     }
-    .container_booking_seat_booking{
-        width: 80%;
-        margin-left: 10%;
-        transform: translateY(100px);
-        background-color: #e2e2e2;
-        display: flex;
-        flex-wrap: wrap;
-        .container_booking_seat_booking_box{
-            margin: 10px 20px;
-            width: 80px;
-            height: 80px;
-            // background-color: #3333;
-            display: grid;
-            font-weight: 600;
-            place-items: center;
-            box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-            &:hover{
-                cursor: pointer;
-                box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
-            }
-        }
+
+    .accept{
+      background-color: #2ecc71;
     }
+
+    .container_booking_seat_booking_box {
+      margin: 10px 20.5px;
+      width: 80px;
+      height: 80px;
+      display: grid;
+      font-weight: 600;
+      place-items: center;
+      box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+        rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+      &:hover {
+        cursor: pointer;
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+      }
+    }
+  }
+
+  .ButtonSubmit {
+    font-weight: 700;
+    transform: translateY(140px);
+    margin-left: 10%;
+    font-size: 20px;
+    color: #0984e3;
+    width: 80%;
+    height: 60px;
+    border: 2px solid #0984e3;
+    &:hover{
+        background-color: #0984e3;
+        color: #fff;
+    }
+  }
+}
+
+.Body_order_information{
+  display: flex;
+  height: 500px;
+  .Body_order_information_img{
+    width: 200px;
+    img{
+      width: 200px;
+    }
+  }
+
+  .Body_order_information_content{
+    margin-left: 15px;
+    width: 80%;
+    height: 450px;
+    i{
+      font-size: 25px;
+      text-align: center;
+      font-weight: 700;
+      color: #ff8a00;
+      padding-bottom: 80px;
+    }
+    p{
+      span:nth-child(1){
+        font-weight: 500;
+        text-transform: capitalize;
+      }
+    }
+  }
 }
