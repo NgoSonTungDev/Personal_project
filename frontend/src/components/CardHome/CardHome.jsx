@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "./CardHome.scss";
 
 const CardHome = ({ dataCard }) => {
   const navigation = useNavigate();
+  var today = new Date();
+  var timeHours = today.getHours();
+  var timeMinutes = today.getMinutes();
+
+  const handleCheckButton = (item, indexOption) => {
+    var hours = item.split(":")[0];
+    var minute = item.split(":")[1];
+    if (timeHours < hours && timeMinutes < minute) {
+      handleMove(item);
+    } else {
+      alert("Phim này đã được chiếu ở thời gian này !!!");
+    }
+  };
 
   const handleMove = (time) => {
     navigation(`/home-page-ticket-movie/${dataCard._id}/${time}`);
@@ -40,8 +53,12 @@ const CardHome = ({ dataCard }) => {
 
           <div className="container_card_home_contact_detail">
             <span className="text_itro">Thời gian : </span>{" "}
-            {dataCard.showtime.map((item) => (
-              <span className="text_itro_time" onClick={() => handleMove(item)}>
+            {dataCard.showtime.map((item, index) => (
+              <span
+                key={index}
+                className="text_itro_time"
+                onClick={() => handleCheckButton(item, index)}
+              >
                 {item}
               </span>
             ))}

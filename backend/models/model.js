@@ -163,6 +163,10 @@ const TicketMovie = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  Room:{
+    type: Number,
+    required: true,
+  },
   seatsBooked: {
     type: Array,
     required: true,

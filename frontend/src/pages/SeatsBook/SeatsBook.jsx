@@ -13,8 +13,43 @@ function MyVerticallyCenteredModal(props) {
   const location = useLocation();
   const item = props.dataMovie;
   const seats = props.seats;
+  const IdUser = localStorage.getItem("IdUser");
   const MovieID = location.pathname.split("/")[3];
   const timeBooked = location.pathname.split("/")[4];
+  var today = new Date();
+  var date =
+    today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear();
+
+  const handlePushHistory = () => {
+    var min = 1000;
+    var max = 9000;
+    var rand = parseInt(min + Math.random() * (max - min));
+    const sum = seats.length * item.price;
+    axios
+      .post("http://localhost:5000/api/Historybought/addToHistory", {
+        codeOrders: rand,
+        movieID: MovieID,
+        nameMovie: item.namemovie,
+        price: item.price,
+        showtime: timeBooked,
+        author: item.author,
+        amount: seats.length,
+        Category: item.Category,
+        total: sum,
+        nameUser: username,
+        status: "Chờ xác nhận",
+        seats:seats,
+        AccountUSer: IdUser,
+      })
+      .then(function (response) {
+        alert("Đã đặt thành công 😍");
+        props.setModalShow(false)
+      })
+      .catch(function (error) {
+        alert("Lỗi mất rồi, đặt lại nha 😉");
+      });
+  };
+
   return (
     <Modal
       {...props}
@@ -40,19 +75,47 @@ function MyVerticallyCenteredModal(props) {
         </div>
         <div className="Body_order_information_content">
           <i>{item.namemovie}</i>
-          <br />
-          <p>
+
+          <p style={{ marginTop: "20px" }}>
             <span>tài khoản : </span>
             <span>{username}</span>
           </p>
           <p>
-            <span>Thời gian xem : </span>
-            <span>{timeBooked}</span>
+            <span>Thời điểm xem : </span>
+            <span>{date}</span>
+          </p>
+          <p>
+            <span>Phòng chiếu : </span>
+            <span> Số 6</span>
+          </p>
+          <p>
+            <span>Số lượng : </span>
+            <span>{seats.length}</span>
+          </p>
+          <p>
+            <span>Vị trí : </span>
+            <span>
+              {seats.map((item) => (
+                <span style={{ fontWeight: "400" }}> {item} </span>
+              ))}
+            </span>
+          </p>
+          <p>
+            <span>Thanh Toán : </span>
+            <span style={{ fontWeight: "700", color: "#d63031" }}>
+              {item.price * seats.length} VNĐ
+            </span>
           </p>
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <Button>Submit</Button>
+        <Button
+          onClick={() => {
+            handlePushHistory();
+          }}
+        >
+          Submit
+        </Button>
       </Modal.Footer>
     </Modal>
   );
@@ -68,8 +131,6 @@ const SeatsBook = () => {
   const ref = useRef([]);
 
   const handleCheckBooking = (item, indexOption) => {
-    console.log(array.current);
-
     ref.current.forEach((e, index) => {
       if (index === indexOption) {
         if (
@@ -90,6 +151,10 @@ const SeatsBook = () => {
       }
     });
   };
+
+  const handleCloseModal = (e) =>{
+    setModalShow(e);
+  }
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -119,7 +184,6 @@ const SeatsBook = () => {
               }}
               key={index}
               className="container_booking_seat_booking_box cancel"
-              style={{ backgroundColor: `${ref.current}` }}
               onClick={() => {
                 handleCheckBooking(item, index);
               }}
@@ -149,6 +213,7 @@ const SeatsBook = () => {
         onHide={() => setModalShow(false)}
         dataMovie={data}
         seats={array.current}
+        setModalShow={handleCloseModal}
       />
     </div>
   );
