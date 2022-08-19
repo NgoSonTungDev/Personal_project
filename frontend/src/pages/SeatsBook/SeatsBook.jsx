@@ -11,6 +11,7 @@ import dataSeat from "../../asset/seat";
 function MyVerticallyCenteredModal(props) {
   const username = localStorage.getItem("username");
   const location = useLocation();
+  const navigation = useNavigate();
   const item = props.dataMovie;
   const seats = props.seats;
   const IdUser = localStorage.getItem("IdUser");
@@ -38,12 +39,15 @@ function MyVerticallyCenteredModal(props) {
         total: sum,
         nameUser: username,
         status: "Chờ xác nhận",
-        seats:seats,
+        seats: seats,
         AccountUSer: IdUser,
       })
       .then(function (response) {
+        props.setModalShow(false);
         alert("Đã đặt thành công 😍");
-        props.setModalShow(false)
+        setTimeout(() => {
+          navigation("/home-page-ticket-movie");
+        }, 1000);
       })
       .catch(function (error) {
         alert("Lỗi mất rồi, đặt lại nha 😉");
@@ -152,11 +156,12 @@ const SeatsBook = () => {
     });
   };
 
-  const handleCloseModal = (e) =>{
+  const handleCloseModal = (e) => {
     setModalShow(e);
-  }
+  };
 
   useEffect(() => {
+    console.log(data.seatsBooked);
     window.scrollTo(0, 0);
     axios
       .get(`http://localhost:5000/api/movie/${MovieID}`)

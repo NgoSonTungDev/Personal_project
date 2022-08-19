@@ -6,6 +6,8 @@ import Navbar from "../../components/Navbar/Navbar";
 import CommentMovie from "../../components/Comment/Comment";
 import FooterMovie from "../../components/Footer/Footer";
 import Toast from "react-bootstrap/Toast";
+import LoginHome from "../../components/Login/Login";
+
 
 const IntroduceMovie = () => {
   const [data, setData] = useState([]);
@@ -50,39 +52,6 @@ const IntroduceMovie = () => {
       }
     }
   };
-
-  // const handlePushHistory = () => {
-  //   var min = 1000;
-  //   var max = 9000;
-  //   var rand = parseInt(min + Math.random() * (max - min));
-  //   const sum = amount * data.price;
-  //   axios
-  //     .post("http://localhost:5000/api/Historybought/addToHistory", {
-  //       codeOrders: rand,
-  //       idmovie: idMovie,
-  //       nameMovie: data.namemovie,
-  //       price: data.price,
-  //       showtime: data.showtime,
-  //       author: data.author,
-  //       amount: amount,
-  //       Category: data.Category,
-  //       total: sum,
-  //       nameUser: username,
-  //       status: "Chờ xác nhận",
-  //       AccountUSer: IdUser,
-  //     })
-  //     .then(function (response) {
-  //       setShow(true);
-  //       setMessage("Đã đặt thành công 😍");
-  //       setOpen(false);
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //       setShow(true);
-  //       setMessage("Lỗi mất rồi, đặt lại nha 😉");
-  //       setOpen(false);
-  //     });
-  // };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -197,6 +166,7 @@ const IntroduceMovie = () => {
           </div>
         </div>
       </div>
+      <LoginHome />
       <FooterMovie />
       <Toast
         onClose={() => setShow(false)}

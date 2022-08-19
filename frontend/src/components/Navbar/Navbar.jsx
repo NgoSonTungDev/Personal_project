@@ -32,44 +32,7 @@ const Navbar = () => {
             <div className="container_narbar_content_name">
               <p>{username}</p>
             </div>
-            <div className="container_narbar_content_user" onClick={handleuser}>
-              <div className="container_narbar_content_2">
-                <div className="arrow-up"></div>
-                <div className="container_narbar_content_2_1">
-                  <i className="bx bx-cart-alt"></i>
-                  <p
-                    onClick={() => {
-                      navigation(`/${username}/cart`);
-                    }}
-                  >
-                    {" "}
-                    Giỏ hàng
-                  </p>
-                </div>
-                <div className="container_narbar_content_2_1">
-                  <i className="bx bx-history"></i>
-                  <p
-                    onClick={() => {
-                      navigation(`/${username}/history`);
-                    }}
-                  >
-                    {" "}
-                    Lịch sử mua hàng
-                  </p>
-                </div>
-
-                <Link
-                  to="/"
-                  onClick={() => {
-                    localStorage.clear();
-                  }}
-                >
-                  <div className="container_narbar_content_2_1">
-                    <i className="bx bx-log-out"></i>
-                    <p> đăng xuất</p>
-                  </div>
-                </Link>
-              </div>
+            <div className="container_narbar_content_user">
             </div>
           </div>
         )}

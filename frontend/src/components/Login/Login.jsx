@@ -12,18 +12,36 @@ const LoginHome = () => {
 
   return (
     <div>
-      <div className="conponent_goback_Login">
-        {username ? (
-          <i
-            class="bx bx-log-out"
-            onClick={() => {
-              window.location.reload();
-              localStorage.clear();
-            }}
-          ></i>
-        ) : (
-          <i class="bx bx-log-in" onClick={moveLogin}></i>
-        )}
+      <div className="container_back_at_home">
+        <div
+          className="conponent_goback_Login"
+          onClick={() => {
+            navigate(`/${username}/cart`);
+          }}
+        >
+          <i class="bx bx-cart-alt"></i>
+        </div>
+        <div
+          className="conponent_goback_Login"
+          onClick={() => {
+            navigate(`/${username}/history`);
+          }}
+        >
+          <i class="bx bx-history"></i>
+        </div>
+        <div className="conponent_goback_Login">
+          {username ? (
+            <i
+              class="bx bx-log-out"
+              onClick={() => {
+                window.location.reload();
+                localStorage.clear();
+              }}
+            ></i>
+          ) : (
+            <i class="bx bx-log-in" onClick={moveLogin}></i>
+          )}
+        </div>
       </div>
     </div>
   );

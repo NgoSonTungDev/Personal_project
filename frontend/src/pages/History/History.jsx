@@ -78,10 +78,9 @@ const History = () => {
             <tr>
               <th>Mã đơn hàng </th>
               <th>Tên Phim </th>
-              <th>Đạo Điễn</th>
-              <th>Thể Loại</th>
               <th>Số lượng</th>
               <th>Thời gian Chiếu</th>
+              <th>Vị Trí</th>
               <th>Giá</th>
               <th>Trạng thái</th>
               <th>Tổng Tiền</th>
@@ -91,10 +90,14 @@ const History = () => {
               <tr>
                 <td>{item.codeOrders}</td>
                 <td>{item.nameMovie}</td>
-                <td>{item.author}</td>
-                <td>{item.Category}</td>
                 <td>{item.amount}</td>
                 <td>{item.showtime}</td>
+                <td>
+                  {item.seats.map((element) => (
+                    <i> {element} </i>
+                  ))}
+                </td>
+
                 <td>{item.price}</td>
                 {item.status === "Chờ xác nhận" && (
                   <td style={{ color: "#e74c3c" }}>{item.status}</td>
@@ -128,7 +131,7 @@ const History = () => {
                       <i className="bx bxs-trash"></i> <span>Xóa</span>
                     </button>
                   )}
-                   {item.status === "Chờ xác nhận" && (
+                  {item.status === "Chờ xác nhận" && (
                     <button
                       onClick={() => {
                         handleShow();

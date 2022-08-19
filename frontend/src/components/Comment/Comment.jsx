@@ -14,7 +14,7 @@ const CommentMovie = (props) => {
   function onPress_ENTER(event) {
     var keyPressed = event.keyCode || event.which;
     if (keyPressed == 13) {
-      handlePush()
+      handlePush();
       keyPressed = null;
     } else {
       return false;
@@ -81,14 +81,16 @@ const CommentMovie = (props) => {
               <div className="card_cmt_content_cmt">
                 <p className="card_cmt_content_cmt_name">{e.nameUser}</p>
                 <p className="card_cmt_content_cmt_content">{e.content}</p>
-                <span>Thích ({e.like}) </span> &nbsp;{" "}
-                <span
-                  onClick={() => {
-                    handleDelete(e.nameUser, e._id);
-                  }}
-                >
-                  Xóa{" "}
-                </span>
+
+                {e.nameUser === username && (
+                  <span
+                    onClick={() => {
+                      handleDelete(e.nameUser, e._id);
+                    }}
+                  >
+                    Xóa{" "}
+                  </span>
+                )}
               </div>
             </div>
           ))}

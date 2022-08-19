@@ -57,30 +57,31 @@ const PaymentOrders = () => {
       .then(function (response) {
         updateStatusOrder();
         ///////////////
-        axios
-          .put(`http://localhost:5000/api/movie/${idmovie}`, {
-            seats: response.data.seats - data.amount,
-          })
-          .then(function (response) {})
-          .catch(function (error) {});
-        //////////////////
-        axios
-          .post("http://localhost:5000/api/TotalOrder/addToOrder", {
-            nameAccount: username,
-            nameMovie: data.nameMovie,
-            amount: data.amount,
-            price: data.price,
-            total: data.total,
-          })
-          .then(function (response) {})
-          .catch(function (error) {});
+        // axios
+        //   .put(`http://localhost:5000/api/movie/${idmovie}`, {
+        //     seats: response.data.seats - data.amount,
+        //     seatsBooked: data.seats
+        //   })
+        //   .then(function (response) {})
+        //   .catch(function (error) {});
+        // //////////////////
+        // axios
+        //   .post("http://localhost:5000/api/TotalOrder/addToOrder", {
+        //     nameAccount: username,
+        //     nameMovie: data.nameMovie,
+        //     amount: data.amount,
+        //     price: data.price,
+        //     total: data.total,
+        //   })
+        //   .then(function (response) {})
+        //   .catch(function (error) {});
         /////////////////
         setTimeout(() => {
           text.innerHTML = "Thanh Toán Thành Công";
           setTimeout(() => {
             loader.style.display = "none";
             text.innerHTML = "Đang Thanh Toán . . .";
-            navigation("/home-page-ticket-movie");
+            // navigation("/home-page-ticket-movie");
           }, 1000);
         }, 2000);
       })

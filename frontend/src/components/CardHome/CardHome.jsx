@@ -9,13 +9,18 @@ const CardHome = ({ dataCard }) => {
   var timeMinutes = today.getMinutes();
 
   const handleCheckButton = (item, indexOption) => {
-    var hours = item.split(":")[0];
-    var minute = item.split(":")[1];
-    if (timeHours < hours && timeMinutes < minute) {
+    var hours = Number(item.split(":")[0]);
+    var minute = Number(item.split(":")[1]);
+    if (timeHours < hours) {
+      handleMove(item);
+    } else if (timeHours == hours && timeMinutes < minute) {
       handleMove(item);
     } else {
       alert("Phim này đã được chiếu ở thời gian này !!!");
     }
+    // console.log(timeHours < hours && timeMinutes < minute);
+    // console.log(timeHours, hours);
+    // console.log(timeMinutes, minute);
   };
 
   const handleMove = (time) => {
