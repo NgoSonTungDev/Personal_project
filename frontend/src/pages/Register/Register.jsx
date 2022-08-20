@@ -69,13 +69,13 @@ const Register = () => {
 
   const handleOnClickButtonRegister = () => {
     checkInputs();
-    setCheck(true);
     if (a === true && b === true && c === true && d === true) {
       handleRegister();
     }
   };
 
   const checkInputs = () => {
+    setCheck(true);
     if (usernameValue === "") {
       setErrorFor(username, "Username cannot be blank");
       setCheck(false);
@@ -84,13 +84,13 @@ const Register = () => {
       setSuccessFor(username);
       a = true;
     }
-
+    
     if (emailValue === "") {
       setErrorFor(email, "Email cannot be blank");
       setCheck(false);
       b = false;
     } else if (!isEmail(emailValue)) {
-      setErrorFor(email, "Not a valid email");
+      setErrorFor(email, "Not a valid email 'abc@gmail.com'");
       setCheck(false);
       b = false;
     } else {

@@ -20,7 +20,10 @@ const PaymentOrders = () => {
   const handleShow = () => setShow(true);
   const navigation = useNavigate();
   const username = localStorage.getItem("username");
-  const idmovie = data.idmovie;
+  const MovieID = data.movieID;
+  var today = new Date();
+  var timenow = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+  var datenow = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
 
   const updateStatusOrder = () => {
     axios
@@ -46,42 +49,46 @@ const PaymentOrders = () => {
     setMesage("hủy");
     handleShow();
   };
+  
 
   const handleOpenModal = () => {
     var loader = document.querySelector(".loader-payments");
     var text = document.getElementById("PAYING");
     loader.style.display = "block";
+    var dateTime = `${datenow} ${timenow}`
+
     setShow(false);
     axios
-      .get(`http://localhost:5000/api/movie/${idmovie}`)
+      .get(`http://localhost:5000/api/movie/${MovieID}`)
       .then(function (response) {
         updateStatusOrder();
         ///////////////
-        // axios
-        //   .put(`http://localhost:5000/api/movie/${idmovie}`, {
-        //     seats: response.data.seats - data.amount,
-        //     seatsBooked: data.seats
-        //   })
-        //   .then(function (response) {})
-        //   .catch(function (error) {});
-        // //////////////////
-        // axios
-        //   .post("http://localhost:5000/api/TotalOrder/addToOrder", {
-        //     nameAccount: username,
-        //     nameMovie: data.nameMovie,
-        //     amount: data.amount,
-        //     price: data.price,
-        //     total: data.total,
-        //   })
-        //   .then(function (response) {})
-        //   .catch(function (error) {});
-        /////////////////
+        axios
+          .put(`http://localhost:5000/api/movie/${MovieID}`, {
+            seats: response.data.seats - data.amount,
+            seatsBooked: data.seats
+          })
+          .then(function (response) {})
+          .catch(function (error) {});
+        //////////////////
+        axios
+          .post("http://localhost:5000/api/TotalOrder/addToOrder", {
+            nameAccount: username,
+            nameMovie: data.nameMovie,
+            amount: data.amount,
+            dateTime: dateTime,
+            price: data.price,
+            total: data.total,
+          })
+          .then(function (response) {})
+          .catch(function (error) {});
+        ///////////////
         setTimeout(() => {
           text.innerHTML = "Thanh Toán Thành Công";
           setTimeout(() => {
             loader.style.display = "none";
             text.innerHTML = "Đang Thanh Toán . . .";
-            // navigation("/home-page-ticket-movie");
+            navigation("/home-page-ticket-movie");
           }, 1000);
         }, 2000);
       })

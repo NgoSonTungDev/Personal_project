@@ -5,6 +5,8 @@ import axios from "axios";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import { Modal, Button } from "react-bootstrap";
+import LoginHome from "../../components/Login/Login";
+
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -190,13 +192,13 @@ const OrderManagement = () => {
                   )}
                   {item.status === "Thành Công" && (
                     <button
-                      style={{ color: "#0984e3", fontWeight : "500" }}
+                      style={{ color: "#0984e3", fontWeight : "600" }}
                       className="btn_in_order2"
                       onClick={() => {
-                        alert("Đã hủy bỏ đơn này !!!");
+                        alert("Đã Thanh Toán Thành công !!!");
                       }}
                     >
-                      <i class="bx bx-x-circle"></i> Đã Thanh Toán
+                       Đã Thanh Toán
                     </button>
                   )}
                 </td>
@@ -244,6 +246,8 @@ const OrderManagement = () => {
           {masage}
         </Alert>
       </Snackbar>
+      <LoginHome />
+
     </div>
   );
 };

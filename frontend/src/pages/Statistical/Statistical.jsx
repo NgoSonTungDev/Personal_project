@@ -4,6 +4,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import { useLocation } from "react-router-dom";
 import Stack from "@mui/material/Stack";
 import Snackbar from "@mui/material/Snackbar";
+import LoginHome from "../../components/Login/Login";
 import MuiAlert from "@mui/material/Alert";
 import {
   BarChart,
@@ -261,6 +262,8 @@ const Statistical = () => {
           </Alert>
         </Snackbar>
       </Stack>
+      <LoginHome />
+
     </div>
   );
 };

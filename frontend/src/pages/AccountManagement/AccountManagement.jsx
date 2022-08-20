@@ -4,6 +4,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import axios from "axios";
 import { Button, Modal } from "react-bootstrap";
 import Snackbar from "@mui/material/Snackbar";
+import LoginHome from "../../components/Login/Login";
 import MuiAlert from "@mui/material/Alert";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -190,9 +191,9 @@ const AccountManagement = () => {
                     <span>Xem chi tiết</span>
                   </button>
                   <button
-                    onClick={ () => {
-                       setID(item._id);
-                       handleUpdateUSer(item._id);
+                    onClick={() => {
+                      setID(item._id);
+                      handleUpdateUSer(item._id);
                     }}
                   >
                     <i className="fa-solid fa-pen-to-square"></i>{" "}
@@ -347,6 +348,8 @@ const AccountManagement = () => {
           </Button>
         </Modal.Footer>
       </Modal>
+      <LoginHome />
+
     </div>
   );
 };

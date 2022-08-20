@@ -78,6 +78,7 @@
 .body_add_movie {
   height: 530px;
   width: 100%;
+  overflow-y: scroll;
   .body_add_movie_div{
     width: 90%;
     margin-left: 5%;

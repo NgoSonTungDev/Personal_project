@@ -4,6 +4,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import axios from "axios";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
+import LoginHome from "../../components/Login/Login";
 import { Modal, Button } from "react-bootstrap";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -17,6 +18,7 @@ const MovieManagement = () => {
   const [id, setid] = useState("");
   const [open, setOpen] = React.useState(false);
   const [masage, setmasage] = useState("");
+  const [room, setRoom] = useState("");
   const [story, setstory] = useState("");
   const [name, setname] = useState("");
   const [background, setbackground] = useState("");
@@ -29,7 +31,6 @@ const MovieManagement = () => {
   const [Category, setCategory] = useState("Khoa Học Viên Tưởng");
   const [introduce, setintroduce] = useState("");
   const [seats, setSeats] = useState(0);
-
   const [checkbtn, setcheckbtn] = useState(1);
   const [masegeInfom, setmasegeInfom] = useState("");
   const handleClose = () => setShow(false);
@@ -57,10 +58,12 @@ const MovieManagement = () => {
         price: price,
         time: time,
         releasedate: releasedate,
-        showtime: showtime,
+        showtime: showtime.split(" "),
         author: author,
         Category: Category,
         introduce: introduce,
+        Room: room,
+        seatsBooked:[],
         seats: 100,
       })
       .then(function (response) {
@@ -76,6 +79,37 @@ const MovieManagement = () => {
         handleClose();
         handleClick();
         setmasage("Thêm không thành công !!!");
+        setstory("error");
+      });
+  };
+
+  const handleUpdateAPI = () => {
+    axios
+      .put(`http://localhost:5000/api/movie/${id}`, {
+        namemovie: name,
+        background: background,
+        image: avata,
+        price: price,
+        time: time,
+        Room: room,
+        releasedate: releasedate,
+        showtime: showtime.split(" "),
+        author: author,
+        Category: Category,
+        introduce: introduce,
+        seats: seats,
+      })
+      .then(function (response) {
+        handleClose();
+        window.location.reload();
+        handleClick();
+        setmasage("Cập nhât thành công !!!");
+        setstory("success");
+      })
+      .catch(function (error) {
+        handleClose();
+        handleClick();
+        setmasage("Lỗi !!!");
         setstory("error");
       });
   };
@@ -133,7 +167,6 @@ const MovieManagement = () => {
       .get(`http://localhost:5000/api/movie/${e}`)
       .then(function (response) {
         handleShow2();
-        // console.log(response);
         setname(response.data.namemovie);
         setbackground(response.data.background);
         setavata(response.data.image);
@@ -141,6 +174,7 @@ const MovieManagement = () => {
         settime(response.data.time);
         setreleasedate(response.data.releasedate);
         setshowtime(response.data.showtime);
+        setRoom(response.data.Room)
         setauthor(response.data.author);
         setCategory(response.data.Category);
         setintroduce(response.data.introduce);
@@ -192,35 +226,7 @@ const MovieManagement = () => {
     setcheckbtn(1);
   };
 
-  const handleUpdateAPI = () => {
-    axios
-      .put(`http://localhost:5000/api/movie/${id}`, {
-        namemovie: name,
-        background: background,
-        image: avata,
-        price: price,
-        time: time,
-        releasedate: releasedate,
-        showtime: showtime,
-        author: author,
-        Category: Category,
-        introduce: introduce,
-        seats: seats,
-      })
-      .then(function (response) {
-        handleClose();
-        window.location.reload();
-        handleClick();
-        setmasage("Cập nhât thành công !!!");
-        setstory("success");
-      })
-      .catch(function (error) {
-        handleClose();
-        handleClick();
-        setmasage("Lỗi !!!");
-        setstory("error");
-      });
-  };
+ 
 
   useEffect(() => {
     axios
@@ -250,6 +256,7 @@ const MovieManagement = () => {
               <th>Tên phim</th>
               <th>Ngày phát hành</th>
               <th>Đạo diễn</th>
+              <th>Phòng Chiếu</th>
               <th>Thể loại</th>
               <th>Thời gian chiếu</th>
               <th>Số Lượng Ghế</th>
@@ -262,8 +269,11 @@ const MovieManagement = () => {
                 <td>{item.namemovie}</td>
                 <td>{item.releasedate}</td>
                 <td>{item.author}</td>
+                <td>{item.Room}</td>
                 <td>{item.Category}</td>
-                <td>{item.showtime}</td>
+                <td>{ item.showtime.map((hour)=>(
+                  <i> {hour} </i>
+                )) }</td>
                 <td>{item.seats}</td>
                 <td>{item.time}</td>
                 <td>{item.price}</td>
@@ -384,6 +394,19 @@ const MovieManagement = () => {
             />
           </div>
           <div className="body_add_movie_div">
+            <p>Phòng chiếu số : </p>
+            <input
+              type="number"
+              min="1"
+              required
+              placeholder="1"
+              value={room}
+              onChange={(e) => {
+                setRoom(e.target.value);
+              }}
+            />
+          </div>
+          <div className="body_add_movie_div">
             <p>Giá Vé : </p>
             <input
               type="number"
@@ -425,7 +448,7 @@ const MovieManagement = () => {
             <input
               type="text"
               required
-              placeholder="??h?? | ?/?/????"
+              placeholder="??h?? ??h?? ??h??"
               value={showtime}
               onChange={(e) => {
                 setshowtime(e.target.value);
@@ -502,6 +525,8 @@ const MovieManagement = () => {
           )}
         </Modal.Footer>
       </Modal>
+      <LoginHome />
+
     </div>
   );
 };

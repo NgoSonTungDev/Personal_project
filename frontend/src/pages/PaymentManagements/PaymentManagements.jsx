@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import axios from "axios";
+import LoginHome from "../../components/Login/Login";
+
 import "./PaymentManagements.scss";
 
 const PaymentManagements = () => {
@@ -41,6 +43,7 @@ const PaymentManagements = () => {
               <th>Tên Khách Hàng </th>
               <th>Tên Phim</th>
               <th>Giá Vé</th>
+              <th>Thời Gian</th>
               <th>Số Lượng</th>
               <th>Tổng Tiền</th>
             </tr>
@@ -49,6 +52,7 @@ const PaymentManagements = () => {
                 <td>{item.nameAccount}</td>
                 <td>{item.nameMovie}</td>
                 <td style={{ textAlign: "center" }}>{item.price} VND</td>
+                <td style={{ textAlign: "center" }}>{item.dateTime}</td>
                 <td style={{ textAlign: "center" }}>{item.amount}</td>
                 <td style={{ textAlign: "center", color: "#da251c" }}>
                   {item.total} VND
@@ -64,6 +68,8 @@ const PaymentManagements = () => {
           </p>
         </div>
       </div>
+      <LoginHome />
+
     </div>
   );
 };

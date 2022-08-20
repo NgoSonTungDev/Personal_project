@@ -207,6 +207,10 @@ const consolidation = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    dateTime:{
+      type: String,
+      required: true,
+    },
     price: {
       type: Number,
       required: true,
@@ -215,8 +219,7 @@ const consolidation = new mongoose.Schema(
       type: Number,
       required: true,
     },
-  },
-  { timestamps: true }
+  }
 );
 
 //user

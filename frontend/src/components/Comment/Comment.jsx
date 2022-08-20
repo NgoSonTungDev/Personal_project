@@ -7,6 +7,7 @@ const CommentMovie = (props) => {
   const [commment, setComment] = useState("");
   const [message, setMessage] = useState("");
   const username = localStorage.getItem("username");
+  const admin = localStorage.getItem("admin");
   const [show, setShow] = useState(false);
   const item = props.datacmt;
   const id = props.idMovie;
@@ -82,6 +83,15 @@ const CommentMovie = (props) => {
                 <p className="card_cmt_content_cmt_name">{e.nameUser}</p>
                 <p className="card_cmt_content_cmt_content">{e.content}</p>
 
+                {admin === "true" && (
+                  <span
+                    onClick={() => {
+                      handleDelete(e.nameUser, e._id);
+                    }}
+                  >
+                    Xóa{" "}
+                  </span>
+                )}
                 {e.nameUser === username && (
                   <span
                     onClick={() => {
